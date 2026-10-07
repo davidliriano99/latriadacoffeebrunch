@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>La Tríada | Coffee Brunch & Dinner</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            /* Paleta Café & Blanco Principal */
+            --bg-cream: #FAF7F2;
+            --bg-warm: #F4EFE7;
+            --bg-card: #FFFFFF;
+            --coffee-deep: #2A1B14;
+            --coffee-medium: #4D3428;
+            --coffee-light: #7E5945;
+            --accent-gold: #B88E56;
+            --accent-gold-soft: #E5D5C1;
+            
+            /* Toque Discreto Azul / Palmas */
+            --teal-palm-deep: #183C42;
+            --teal-palm-medium: #23545C;
+            --teal-palm-soft: rgba(35, 84, 92, 0.08);
+            --teal-palm-border: rgba(35, 84, 92, 0.18);
+            
+            --text-dark: #221A16;
+            --text-muted: #6B5F56;
+            --border-light: #E7DDCE;
+            --shadow-soft: 0 10px 30px rgba(42, 27, 20, 0.05);
+            --shadow-hover: 0 18px 40px rgba(42, 27, 20, 0.1);
+            --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: radial-gradient(var(--border-light) 0.75px, transparent 0.75px);
+            background-size: 28px 28px;
+        }
+
+        h1, h2, h3, h4, .brand-font {
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 0.3px;
+        }
+
+        /* ========== NAVBAR ========== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(250, 247, 242, 0.96);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1320px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.85rem 1.5rem;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            z-index: 1001;
+        }
+
+        .logo-svg {
+            width: 42px;
+            height: 42px;
+            color: var(--coffee-medium);
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--coffee-deep);
+            line-height: 1;
+        }
+
+        .logo-sub {
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-top: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--coffee-medium);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--teal-palm-medium);
+        }
+
+        .nav-btn {
+            background: var(--coffee-deep);
+            color: #fff !important;
+            padding: 0.65rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(42, 27, 20, 0.15);
+            transition: var(--transition);
+        }
+
+        .nav-btn:hover {
+            background: var(--teal-palm-deep);
+            transform: translateY(-2px);
+        }
+
+        /* Botón Hamburguesa Móvil */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--coffee-deep);
+            font-size: 1.4rem;
+            cursor: pointer;
+            padding: 6px;
+            z-index: 1001;
+        }
+
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100vh;
+            background: var(--bg-card);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+            padding: 90px 2rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            z-index: 1000;
+            transition: right 0.35s ease;
+        }
+
+        .mobile-drawer.open {
+            right: 0;
+        }
+
+        .mobile-drawer a {
+            text-decoration: none;
+            color: var(--coffee-deep);
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .drawer-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* ========== HERO SECTION (PANTALLA COMPLETA 100vh/100dvh) ========== */
+        .hero {
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 90px 1.5rem 2.5rem;
+            background: radial-gradient(circle at 50% 35%, #FFFFFF 0%, var(--bg-warm) 100%);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* Siluetas de palmas sutiles en marca de agua */
+        .palm-watermark-left, .palm-watermark-right {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            pointer-events: none;
+            opacity: 0.045;
+            color: var(--teal-palm-deep);
+            z-index: 0;
+        }
+
+        .palm-watermark-left {
+            top: 40px;
+            left: -70px;
+            transform: rotate(-25deg);
+        }
+
+        .palm-watermark-right {
+            bottom: -50px;
+            right: -60px;
+            transform: rotate(35deg);
+        }
+
+        .hero-content {
+            max-width: 860px;
+            margin: auto 0;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            background: var(--teal-palm-soft);
+            color: var(--teal-palm-medium);
+            border: 1px solid var(--teal-palm-border);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.3rem, 5.2vw, 4.3rem);
+            font-weight: 700;
+            color: var(--coffee-deep);
+            line-height: 1.15;
+            margin-bottom: 1.1rem;
+        }
+
+        .hero h1 span {
+            font-style: italic;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            color: var(--teal-palm-medium);
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-bottom: 1.8rem;
+            max-width: 660px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1.1rem;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--coffee-deep);
+            color: #fff;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-primary:hover {
+            background: var(--teal-palm-deep);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(24, 60, 66, 0.25);
+        }
+
+        .btn-secondary {
+            background: #fff;
+            color: var(--coffee-deep);
+            border: 1px solid var(--border-light);
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--teal-palm-medium);
+            color: var(--teal-palm-medium);
+            transform: translateY(-2px);
+        }
+
+        /* ========== CINTA CORREDIZA (MARQUEE) ========== */
+        .marquee-wrapper {
+            background: var(--coffee-deep);
+            color: #fff;
+            padding: 1.15rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+            display: flex;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 4rem;
+            animation: marqueeAnim 30s linear infinite;
+            align-items: center;
+        }
+
+        .marquee-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: #F8F3EA;
+        }
+
+        .marquee-item i {
+            color: var(--accent-gold);
+            font-size: 0.82rem;
+        }
+
+        .marquee-item .palm-ico {
+            color: #5BA89E;
+        }
+
+        @keyframes marqueeAnim {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ========== AMBIANCE & TRANQUILITY SECTION ========== */
+        .tranquility-strip {
+            background: var(--bg-warm);
+            padding: 60px 2rem;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tranquility-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tranquility-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 1.8rem;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .tranquility-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--teal-palm-border);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .tranquility-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            background: var(--teal-palm-soft);
+            color: var(--teal-palm-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .tranquility-card h4 {
+            font-size: 1.1rem;
+            color: var(--coffee-deep);
+            margin-bottom: 4px;
+        }
+
+        .tranquility-card p {
+            font-size: 0.86rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ========== MENU SECTION ========== */
+        .menu-section {
+            padding: 100px 2rem;
+            max-width: 1320px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3.5rem;
+        }
+
+        .section-header .sub-title {
+            color: var(--teal-palm-medium);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .section-header .sub-title i {
+            font-size: 0.75rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.85rem;
+            color: var(--coffee-deep);
+        }
+
+        /* Search & Filter Controls */
+        .menu-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.8rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 460px;
+            width: 100%;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.95rem 1.4rem 0.95rem 3.2rem;
+            border-radius: 50px;
+            border: 1px solid var(--border-light);
+            background: #fff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .search-box input:focus {
+            border-color: var(--teal-palm-medium);
+            box-shadow: 0 0 0 3px rgba(35, 84, 92, 0.12);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1.3rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .category-filters-wrap {
+            width: 100%;
+            overflow-x: auto;
+            padding-bottom: 6px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .category-filters-wrap::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            background: #FFFFFF;
+            border: 1px solid var(--border-light);
+            color: var(--coffee-medium);
+            padding: 0.65rem 1.45rem;
+            border-radius: 30px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--coffee-deep);
+            color: #fff;
+            border-color: var(--coffee-deep);
+            box-shadow: 0 5px 15px rgba(42, 27, 20, 0.15);
+        }
+
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--teal-palm-border);
+        }
+
+        .card-img-wrap {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            background-color: var(--bg-warm);
+        }
+
+        .card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .menu-card:hover .card-img-wrap img {
+            transform: scale(1.06);
+        }
+
+        .card-category-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: rgba(24, 60, 66, 0.88);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .card-body {
+            padding: 1.6rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .card-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--coffee-deep);
+            font-family: 'Playfair Display', serif;
+            line-height: 1.25;
+        }
+
+        .card-price {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            white-space: nowrap;
+        }
+
+        .card-desc {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+            margin-top: 0.3rem;
+        }
+
+        .itbis-banner {
+            margin-top: 4rem;
+            text-align: center;
+            background: var(--bg-warm);
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 0.84rem;
+            color: var(--coffee-medium);
+            font-weight: 600;
+            letter-spacing: 1px;
+            border: 1px dashed var(--accent-gold);
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--coffee-deep);
+            color: #FAF4EB;
+            padding: 75px 2rem 35px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::after {
+            content: '';
+            position: absolute;
+            right: -60px;
+            bottom: -60px;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(35, 84, 92, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .footer-container {
+            max-width: 1250px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3.5rem;
+            margin-bottom: 3.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-brand .logo-title {
+            color: #fff;
+        }
+
+        .footer-brand p {
+            margin-top: 1rem;
+            color: #D3C7BA;
+            font-size: 0.92rem;
+            max-width: 340px;
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            font-size: 1.15rem;
+            margin-bottom: 1.2rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.7rem;
+            font-size: 0.9rem;
+            color: #D3C7BA;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-col ul li i {
+            color: var(--accent-gold);
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.3rem;
+        }
+
+        .footer-socials a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-socials a:hover {
+            background: var(--teal-palm-medium);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 2rem;
+            font-size: 0.85rem;
+            color: #9E9083;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+            .category-filters { flex-wrap: nowrap; justify-content: flex-start; }
+            .footer-container { grid-template-columns: 1fr; gap: 2.5rem; }
+            .menu-grid { grid-template-columns: 1fr; }
+            
+            /* Ajustes exactos para teléfonos */
+            .hero {
+                min-height: 100dvh;
+                padding: 85px 1.25rem 2rem;
+            }
+            .hero h1 {
+                font-size: 2.3rem;
+                margin-bottom: 0.9rem;
+            }
+            .hero p {
+                font-size: 0.98rem;
+                margin-bottom: 1.6rem;
+            }
+            .hero-actions {
+                flex-direction: column;
+                gap: 0.85rem;
+                width: 100%;
+                max-width: 280px;
+            }
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                padding: 0.85rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- OVERLAY & MENÚ DRAWER MÓVIL -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+        <a href="#menu" class="mobile-link">Menú Completo <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#espacio" class="mobile-link">Ambiente & Calma <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#contacto" class="mobile-link">Contacto & Horarios <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#menu" class="btn-primary mobile-link" style="justify-content: center; margin-top: 1rem; color: #fff;">Ver la Carta</a>
+    </div>
+
+    <!-- NAVBAR -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo-wrap">
+                <!-- SVG Logo Exact Match -->
+                <svg class="logo-svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M25,60 C25,75 40,84 50,84 C60,84 75,75 75,60 Z" />
+                    <path d="M23,60 L77,60" />
+                    <path d="M75,64 C82,64 87,68 87,72 C87,76 82,78 74,78" />
+                    <path d="M22,88 C32,92 68,92 78,88" stroke-width="2" />
+                    <path d="M50,48 C50,42 42,32 50,22 C58,32 50,42 50,48 Z" />
+                    <path d="M38,40 C32,32 30,22 40,25 C46,28 42,40 42,40" />
+                    <path d="M62,40 C68,32 70,22 60,25 C54,28 58,40 58,40" />
+                </svg>
+                <div class="logo-text">
+                    <span class="logo-title">LA TRÍADA</span>
+                    <span class="logo-sub">Coffee Brunch & Dinner</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#menu">Menú Completo</a></li>
+                <li><a href="#espacio">Ambiente</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#menu" class="nav-btn">Ver Carta</a></li>
+            </ul>
+
+            <button class="mobile-toggle" id="menuToggle" aria-label="Abrir Menú">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION (PORTADA COMPLETA AL INICIAR) -->
+    <section class="hero">
+        <svg class="palm-watermark-left" viewBox="0 0 100 100" fill="currentColor">
+            <path d="M50,95 Q48,50 20,20 Q45,35 50,95 M50,95 Q52,50 80,20 Q55,35 50,95 M50,95 Q35,60 10,45 Q40,55 50,95 M50,95 Q65,60 90,45 Q60,55 50,95 M50,95 Q50,40 50,5 Q55,35 50,95" opacity="0.9"/>
+        </svg>
+        <svg class="palm-watermark-right" viewBox="0 0 100 100" fill="currentColor">
+            <path d="M50,95 Q48,50 20,20 Q45,35 50,95 M50,95 Q52,50 80,20 Q55,35 50,95 M50,95 Q35,60 10,45 Q40,55 50,95 M50,95 Q65,60 90,45 Q60,55 50,95 M50,95 Q50,40 50,5 Q55,35 50,95" opacity="0.9"/>
+        </svg>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fa-solid fa-seedling"></i> Luz Natural • Brunch • Café de Autor
+            </div>
+            <h1>El arte del café, brunch y momentos de <span>serenidad</span></h1>
+            <p>Un espacio acogedor donde los tonos cálidos, la frescura botánica y la buena gastronomía se unen para ofrecerte un respiro perfecto.</p>
+            <div class="hero-actions">
+                <a href="#menu" class="btn-primary"><i class="fa-solid fa-utensils"></i> Explorar la Carta</a>
+                <a href="#espacio" class="btn-secondary">Nuestro Espacio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CINTA CORREDIZA (MARQUEE) -->
+    <div class="marquee-wrapper">
+        <div class="marquee-track">
+            <div class="marquee-item"><i class="fa-solid fa-heart"></i> Café de Especialidad</div>
+            <div class="marquee-item"><i class="fa-solid fa-seedling palm-ico"></i> Atmósfera Botánica & Cálida</div>
+            <div class="marquee-item"><i class="fa-solid fa-sparkles"></i> Brunch Diario & Dominican Classic</div>
+            <div class="marquee-item"><i class="fa-solid fa-wine-glass"></i> Cócteles & Vinos Selectos</div>
+            <div class="marquee-item"><i class="fa-solid fa-cookie"></i> Tentaciones Artesanales</div>
+            <div class="marquee-item"><i class="fa-solid fa-sun"></i> Al Salir El Sol & Cena Placentera</div>
+            <!-- Duplicado para loop fluido -->
+            <div class="marquee-item"><i class="fa-solid fa-heart"></i> Café de Especialidad</div>
+            <div class="marquee-item"><i class="fa-solid fa-seedling palm-ico"></i> Atmósfera Botánica & Cálida</div>
+            <div class="marquee-item"><i class="fa-solid fa-sparkles"></i> Brunch Diario & Dominican Classic</div>
+            <div class="marquee-item"><i class="fa-solid fa-wine-glass"></i> Cócteles & Vinos Selectos</div>
+            <div class="marquee-item"><i class="fa-solid fa-cookie"></i> Tentaciones Artesanales</div>
+            <div class="marquee-item"><i class="fa-solid fa-sun"></i> Al Salir El Sol & Cena Placentera</div>
+        </div>
+    </div>
+
+    <!-- TARJETAS DE AMBIENTE SUTIL -->
+    <section class="tranquility-strip" id="espacio">
+        <div class="tranquility-container">
+            <div class="tranquility-card">
+                <div class="tranquility-icon">
+                    <i class="fa-solid fa-sun"></i>
+                </div>
+                <div>
+                    <h4>Luz Natural Cenital</h4>
+                    <p>Diseño arquitectónico con vista al cielo que inunda cada rincón de calidez.</p>
+                </div>
+            </div>
+
+            <div class="tranquility-card">
+                <div class="tranquility-icon">
+                    <i class="fa-solid fa-leaf"></i>
+                </div>
+                <div>
+                    <h4>Detalles Botánicos</h4>
+                    <p>Relieves de palmeras y texturas naturales que inspiran paz y desconexión.</p>
+                </div>
+            </div>
+
+            <div class="tranquility-card">
+                <div class="tranquility-icon">
+                    <i class="fa-solid fa-mug-hot"></i>
+                </div>
+                <div>
+                    <h4>Cafetería de Especialidad</h4>
+                    <p>Granos seleccionados y preparaciones artesanales para disfrutar sin prisa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU SECTION -->
+    <section class="menu-section" id="menu">
+        <div class="section-header">
+            <span class="sub-title"><i class="fa-solid fa-leaf"></i> Menú Completo <i class="fa-solid fa-leaf"></i></span>
+            <h2>Sabores Diseñados con Amor</h2>
+        </div>
+
+        <div class="menu-controls">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="menuSearch" placeholder="Buscar platillo, café, postre o ingrediente...">
+            </div>
+
+            <div class="category-filters-wrap">
+                <div class="category-filters">
+                    <button class="filter-btn active" data-cat="all"><i class="fa-solid fa-border-all"></i> Todo</button>
+                    <button class="filter-btn" data-cat="al-salir-el-sol"><i class="fa-solid fa-sun"></i> Al Salir El Sol</button>
+                    <button class="filter-btn" data-cat="latidos"><i class="fa-solid fa-heart-pulse"></i> Latidos</button>
+                    <button class="filter-btn" data-cat="el-corazon"><i class="fa-solid fa-heart"></i> El Corazón</button>
+                    <button class="filter-btn" data-cat="cafes-bebidas"><i class="fa-solid fa-mug-saucer"></i> Cafés & Bebidas</button>
+                    <button class="filter-btn" data-cat="alcohol"><i class="fa-solid fa-martini-glass"></i> Cócteles & Vinos</button>
+                    <button class="filter-btn" data-cat="tentaciones"><i class="fa-solid fa-cake-candles"></i> Tentaciones</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dynamic Menu Grid with Pictures -->
+        <div class="menu-grid" id="menuContainer"></div>
+
+        <div class="itbis-banner">
+            <i class="fa-solid fa-circle-info"></i> Precios no incluyen ITBIS
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contacto">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="logo-title">LA TRÍADA</span>
+                <p>Coffee, Brunch & Dinner. Donde el buen gusto, los momentos tranquilos y la gastronomía de autor conviven en total armonía.</p>
+                <div class="footer-socials">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Horarios</h4>
+                <ul>
+                    <li><i class="fa-regular fa-clock"></i> Lunes a Jueves: 8:00 AM - 10:00 PM</li>
+                    <li><i class="fa-regular fa-clock"></i> Viernes y Sábado: 8:00 AM - 11:00 PM</li>
+                    <li><i class="fa-regular fa-clock"></i> Domingo: 8:00 AM - 9:00 PM</li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Ubicación & Contacto</h4>
+                <ul>
+                    <li><i class="fa-solid fa-location-dot"></i> República Dominicana</li>
+                    <li><i class="fa-solid fa-phone"></i> Reservaciones disponibles</li>
+                    <li><i class="fa-solid fa-envelope"></i> latriadacoffeebrunch@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 La Tríada Coffee Brunch & Dinner. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT: DATA & DYNAMIC RENDERING -->
+    <script>
+        const menuItems = [
+            // ==================== AL SALIR EL SOL ====================
+            {
+                cat: "al-salir-el-sol",
+                name: "Omelette",
+                price: "$425.00",
+                img: "https://images.unsplash.com/photo-1510693206972-df098062cb71?auto=format&fit=crop&w=600&q=80",
+                desc: "Omelette de 3 huevos acompañado de un croissant fresco. De relleno puede elegir 3 opciones: espinaca, champiñones, ajíes morrones, cebolla, jamón, tocino y queso mozzarella."
+            },
+            {
+                cat: "al-salir-el-sol",
+                name: "Sandwich Don Carlos",
+                price: "$415.00",
+                img: "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=600&q=80",
+                desc: "Pan baguette, queso mozzarella, pastrami, huevo revuelto, salsa honey mustard y aguacate."
+            },
+            {
+                cat: "al-salir-el-sol",
+                name: "Amanecer en el Cibao",
+                price: "$455.00",
+                img: "https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=600&q=80",
+                desc: "El clásico dominicano que reconforta desde el primer bocado. Mangú de plátano verde, queso frito, huevo de su elección (pochado, revuelto o frito), salami y cebollas encurtidas."
+            },
+            {
+                cat: "al-salir-el-sol",
+                name: "Sandwich Rústico",
+                price: "$395.00",
+                img: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=600&q=80",
+                desc: "Pan campesino, pesto de la casa, ensalada de tuna, mozzarella fresca, tomate cherry y rúcula."
+            },
+            {
+                cat: "al-salir-el-sol",
+                name: "Pancakes Dulces",
+                price: "$415.00",
+                img: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=600&q=80",
+                desc: "Esponjosos pancakes caseros con Nutella, frutas de temporada y azúcar glass."
+            },
+            {
+                cat: "al-salir-el-sol",
+                name: "Avocado Toast",
+                price: "$335.00",
+                img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80",
+                desc: "Tostada en pan campesino, aguacate, huevo de su elección (pochado, revuelto o frito), tomates cherry y glaseado de balsámico."
+            },
+            {
+                cat: "al-salir-el-sol",
+                name: "Pancakes Salados",
+                price: "$465.00",
+                img: "https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=600&q=80",
+                desc: "Esponjosos pancakes caseros con huevo de su elección (pochado, revuelto o frito), bacon o salchicha, y cream cheese."
+            },
+            {
+                cat: "al-salir-el-sol",
+                name: "Tostada Francesa",
+                price: "$325.00",
+                img: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=600&q=80",
+                desc: "Pan grueso de tostada francesa, con una mezcla de canela, frutas de temporada, sirope y crema batida."
+            },
+            {
+                cat: "al-salir-el-sol",
+                name: "Tostada de Verano",
+                price: "$475.00",
+                img: "https://images.unsplash.com/photo-1603046891744-76e6300f82ef?auto=format&fit=crop&w=600&q=80",
+                desc: "Tostada en pan campesino, mix de quesos cremosos, tomates al ajillo, tocino y huevo frito. Acompañado de miel."
+            },
+            {
+                cat: "al-salir-el-sol",
+                name: "Tríada Toast",
+                price: "$765.00",
+                img: "https://images.unsplash.com/photo-1588137378633-dea1336ce1e2?auto=format&fit=crop&w=600&q=80",
+                desc: "Bomba de burrata con un drizzle picante de miel, un crumble de pistacho, base de tomates confitados y nueces. Acompañado de pan campesino tostado en mantequilla compuesta."
+            },
+            {
+                cat: "al-salir-el-sol",
+                name: "Jam & Cheese Toast",
+                price: "$275.00",
+                img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80",
+                desc: "Bomba de queso mozzarella con jamón, acompañado de una salsa de ajo."
+            },
+            {
+                cat: "al-salir-el-sol",
+                name: "Crunchy Waffles",
+                price: "$435.00",
+                img: "https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=600&q=80",
+                desc: "Waffles crocantes con 2 huevos pochados, tocineta, aguacate, salsa de ajo y tomates cherry."
+            },
+            {
+                cat: "al-salir-el-sol",
+                name: "Croissant Plain",
+                price: "$160.00",
+                img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80",
+                desc: "Ideal para acompañar tu bebida del día."
+            },
+
+            // ==================== LATIDOS ====================
+            {
+                cat: "latidos",
+                name: "Quesadilla",
+                price: "$385.00",
+                img: "https://images.unsplash.com/photo-1618040996337-56904b7850b9?auto=format&fit=crop&w=600&q=80",
+                desc: "Quesadilla estilo mexicano con pechuga de pollo, cebolla encurtida, mix de ajíes y salsa chipotle."
+            },
+            {
+                cat: "latidos",
+                name: "Pasta Alfredo",
+                price: "$580.00",
+                img: "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?auto=format&fit=crop&w=600&q=80",
+                desc: "Elección de Penne o linguini. Pasta alfredo con pechuga al ajo con pan tostados y mantequilla compuesta."
+            },
+            {
+                cat: "latidos",
+                name: "Mix de Dips Untables",
+                price: "$505.00",
+                img: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=600&q=80",
+                desc: "Hummus, guacamole, mix de queso, servidos con pan tostados y bastoncitos."
+            },
+            {
+                cat: "latidos",
+                name: "Pasta Tomate y Bacon",
+                price: "$530.00",
+                img: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=600&q=80",
+                desc: "Elección de Penne o linguini. Pasta de tomate, con queso mozzarella fresco y tocino. Terminado con pesto."
+            },
+            {
+                cat: "latidos",
+                name: "Croquetas de Pollo",
+                price: "$415.00",
+                img: "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=600&q=80",
+                desc: "Deliciosas croquetas de pollo con nuestra salsa de chipotle de la casa."
+            },
+            {
+                cat: "latidos",
+                name: "Burrata Pasta",
+                price: "$915.00",
+                img: "https://images.unsplash.com/photo-1621996346565-e3d5d62817ee?auto=format&fit=crop&w=600&q=80",
+                desc: "Elección de Penne o linguini. Pasta de pesto de la casa, con tomates confitados y crumble de pistacho."
+            },
+            {
+                cat: "latidos",
+                name: "Taquitos de Pollo",
+                price: "$365.00",
+                img: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=600&q=80",
+                desc: "Taquitos de pechuga de pollo con una salsa tatemada de tomates y especias."
+            },
+            {
+                cat: "latidos",
+                name: "Bowl Essential",
+                price: "$665.00",
+                img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80",
+                desc: "Delicioso arroz con bacon, puerro y madurito, ensalada y aguacate acompañado de pechuga de pollo a la plancha."
+            },
+            {
+                cat: "latidos",
+                name: "Rollos de Maduritos",
+                price: "$225.00",
+                img: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=600&q=80",
+                desc: "Rollos de plátano maduro rellenos de queso y prosciutto acompañados con salsa chipotle."
+            },
+            {
+                cat: "latidos",
+                name: "Montadito de Cerdo",
+                price: "$635.00",
+                img: "https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=600&q=80",
+                desc: "Tapas en pan baguette con filete de cerdo, con nuestra salsa bechamel y un toque de queso parmesano."
+            },
+            {
+                cat: "latidos",
+                name: "Pan Tostado",
+                price: "$185.00",
+                img: "https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?auto=format&fit=crop&w=600&q=80",
+                desc: "Panes tostado de masa madre en nuestra mantequilla compuesta con un toque de queso parmesano por arriba."
+            },
+
+            // ==================== EL CORAZÓN ====================
+            {
+                cat: "el-corazon",
+                name: "Salmón en Salsa de Miel y Cítricos",
+                price: "$1,115.00",
+                img: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=600&q=80",
+                desc: "Filete de Salmón con una reducción de miel, ajo tostado, y un toque vibrante de limón. Incluye un acompañamiento."
+            },
+            {
+                cat: "el-corazon",
+                name: "Churrasco Grass Feed",
+                price: "$1,800.00",
+                img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80",
+                desc: "Tierna y jugosa carne de res de 10oz a la plancha. Incluye un acompañamiento."
+            },
+            {
+                cat: "el-corazon",
+                name: "Tríada Burger",
+                price: "$965.00",
+                img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80",
+                desc: "Deliciosa hamburguesa en pan brioche, con 6oz de carne Angus, queso americano, tocineta, cebolla caramelizadas, tiras de yuca frita, con nuestra salsa especial del chef. Acompañado de papas fritas o yucas fritas."
+            },
+            {
+                cat: "el-corazon",
+                name: "Don Carlos Burger",
+                price: "$1,250.00",
+                img: "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=600&q=80",
+                desc: "Deliciosa hamburguesa en pan brioche, con 6oz de carne Angus, queso cheddar, salsa de hongos, cebollas caramelizadas, lechuga y tomate. Acompañado de papas fritas o yucas fritas."
+            },
+            {
+                cat: "el-corazon",
+                name: "Ensalada Tríada",
+                price: "$910.00",
+                img: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80",
+                desc: "Mezclum de lechugas y rúcula, burrata, tomate cherry, manzanas caramelizadas, kiwi, aguacate, cebolla encurtida, albahaca, y un aderezo de miel y pesto."
+            },
+            {
+                cat: "el-corazon",
+                name: "Beef Tenderloin",
+                price: "$1,750.00",
+                img: "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=600&q=80",
+                desc: "Tierna y jugosa carne de res, con salsa chimichurri."
+            },
+            {
+                cat: "el-corazon",
+                name: "Ensalada Terciopelo",
+                price: "$610.00",
+                img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80",
+                desc: "Mezclum de lechugas, pechuga de pollo a la plancha, tomate cherry, pepino minis, crotones, queso parmesano, cream cheese y un aioli de miel."
+            },
+            {
+                cat: "el-corazon",
+                name: "Pechuga a la Plancha",
+                price: "$485.00",
+                img: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=600&q=80",
+                desc: "Tierna y jugosa con un delicado balance de especias. Incluye un acompañamiento."
+            },
+            {
+                cat: "el-corazon",
+                name: "Filete de Cerdo",
+                price: "$755.00",
+                img: "https://images.unsplash.com/photo-1432139555190-58524dae6a55?auto=format&fit=crop&w=600&q=80",
+                desc: "Suave y fresco a la plancha. Incluye un acompañamiento."
+            },
+            {
+                cat: "el-corazon",
+                name: "Flat Meat",
+                price: "$1,350.00",
+                img: "https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=600&q=80",
+                desc: "Tierna y jugosa carne de res de 8oz, incluye un acompañamiento."
+            },
+            {
+                cat: "el-corazon",
+                name: "Kharlene Burger",
+                price: "$685.00",
+                img: "https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&fit=crop&w=600&q=80",
+                desc: "Deliciosa hamburguesa en pan brioche, con 6oz de pechuga de pollo empanizada en panko, queso americano, tocineta, cebolla encurtida, con nuestra salsa especial del chef."
+            },
+            {
+                cat: "el-corazon",
+                name: "Puré de Yuca o Cepa de Apio",
+                price: "$250.00",
+                img: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=600&q=80",
+                desc: "Suave y cremoso puré artesanal de yuca o cepa de apio."
+            },
+            {
+                cat: "el-corazon",
+                name: "Vegetales al Grill",
+                price: "$200.00",
+                img: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80",
+                desc: "Ajíes morrón, zucchini, berenjenas y cebollas al grill."
+            },
+            {
+                cat: "el-corazon",
+                name: "Maduritos",
+                price: "$190.00",
+                img: "https://images.unsplash.com/photo-1528751014936-863e6e7a319c?auto=format&fit=crop&w=600&q=80",
+                desc: "Láminas de plátano maduro doradas a la plancha."
+            },
+            {
+                cat: "el-corazon",
+                name: "Arroz La Tríada",
+                price: "$225.00",
+                img: "https://images.unsplash.com/photo-1516714435131-44d6b64dc6a2?auto=format&fit=crop&w=600&q=80",
+                desc: "Arroz aromático salteado con puerro y bacon."
+            },
+            {
+                cat: "el-corazon",
+                name: "Tostones",
+                price: "$220.00",
+                img: "https://images.unsplash.com/photo-1534939561126-855b8675edd7?auto=format&fit=crop&w=600&q=80",
+                desc: "Crujientes y deliciosos plátanos verdes fritos al estilo dominicano."
+            },
+
+            // ==================== CAFÉS & BEBIDAS ====================
+            {
+                cat: "cafes-bebidas",
+                name: "Cappuccino Pistacchio",
+                price: "$325.00",
+                img: "https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=600&q=80",
+                desc: "Cappuccino cremoso con infusión aromática y notas selectas de pistacho tostado."
+            },
+            {
+                cat: "cafes-bebidas",
+                name: "Strawberry Iced Matcha Latte",
+                price: "$435.00",
+                img: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=600&q=80",
+                desc: "Matcha japonés ceremonial servido frío sobre puré natural de fresas y leche sedosa."
+            },
+            {
+                cat: "cafes-bebidas",
+                name: "Café de Don Carlos",
+                price: "$375.00",
+                img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80",
+                desc: "Nuestra creación de café insignia, con cuerpo profundo y balance exclusivo de la casa."
+            },
+            {
+                cat: "cafes-bebidas",
+                name: "Cappuccino Italiano",
+                price: "$145.00",
+                img: "https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=600&q=80",
+                desc: "Equilibrado café espresso con leche cremada y espuma aterciopelada."
+            },
+            {
+                cat: "cafes-bebidas",
+                name: "Latte / Flat White",
+                price: "$135.00",
+                img: "https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=600&q=80",
+                desc: "Café caliente con leche texturizada sedosa y arte latte artesanal."
+            },
+            {
+                cat: "cafes-bebidas",
+                name: "Espresso / Doble Espresso",
+                price: "Desde $95.00",
+                img: "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=600&q=80",
+                desc: "Extracción pura, intensa y concentrada de granos seleccionados ($95 sencillo / $125 doble)."
+            },
+            {
+                cat: "cafes-bebidas",
+                name: "Chocolate Caliente",
+                price: "$225.00",
+                img: "https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&w=600&q=80",
+                desc: "Rico y espeso chocolate artesanal caliente."
+            },
+            {
+                cat: "cafes-bebidas",
+                name: "Frappe Caramelo / Chocolate",
+                price: "$240.00",
+                img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=600&q=80",
+                desc: "Bebida helada ultra cremosa coronada con crema batida y sirope artesanal."
+            },
+            {
+                cat: "cafes-bebidas",
+                name: "Iced Coffee / Iced Latte",
+                price: "Desde $150.00",
+                img: "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=600&q=80",
+                desc: "Café refrescante servido sobre leche fría y abundante hielo."
+            },
+            {
+                cat: "cafes-bebidas",
+                name: "Morirsoñando Tradicional (Naranja o Chinola)",
+                price: "$195.00",
+                img: "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=600&q=80",
+                desc: "La bebida clásica dominicana: jugo de naranja o chinola natural batido con leche y hielo."
+            },
+            {
+                cat: "cafes-bebidas",
+                name: "Matcha Frappe & Golden Latte",
+                price: "Desde $225.00",
+                img: "https://images.unsplash.com/photo-1515823662972-da6a2e4d3002?auto=format&fit=crop&w=600&q=80",
+                desc: "Infusiones saludables con cúrcuma, canela, matcha y leches vegetales a elección."
+            },
+            {
+                cat: "cafes-bebidas",
+                name: "Milkshakes (Fresa / Vainilla / Cookies)",
+                price: "Desde $235.00",
+                img: "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?auto=format&fit=crop&w=600&q=80",
+                desc: "Batidas espesas y cremosas con helado y toppings artesanales."
+            },
+
+            // ==================== CÓCTELES & VINOS ====================
+            {
+                cat: "alcohol",
+                name: "Mimosa de Fresas o Naranja",
+                price: "Desde $225.00",
+                img: "https://images.unsplash.com/photo-1560512823-829485b8bf24?auto=format&fit=crop&w=600&q=80",
+                desc: "El infaltable del brunch: vino espumoso burbujeante con zumo natural de fresas ($225) o naranja ($230)."
+            },
+            {
+                cat: "alcohol",
+                name: "Aperol Spritz",
+                price: "$495.00",
+                img: "https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=600&q=80",
+                desc: "Prosecco italiano, Aperol, splash de soda y rodaja fresca de naranja."
+            },
+            {
+                cat: "alcohol",
+                name: "Mojito de Menta o Coco",
+                price: "$485.00",
+                img: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80",
+                desc: "Refrescante cóctel con hierbabuena fresca macerada, ron caribeño y toque clásico o tropical de coco."
+            },
+            {
+                cat: "alcohol",
+                name: "Lychee Martini",
+                price: "$530.00",
+                img: "https://images.unsplash.com/photo-1575023782549-62ca0d244b39?auto=format&fit=crop&w=600&q=80",
+                desc: "Elegancia pura en copa: vodka premium, licor de lychee y un perfil dulce y floral."
+            },
+            {
+                cat: "alcohol",
+                name: "Cócteles Clásicos & de Autor",
+                price: "Desde $325.00",
+                img: "https://images.unsplash.com/photo-1527061011665-3652c757a4d4?auto=format&fit=crop&w=600&q=80",
+                desc: "Paloma ($525) • Margarita ($425) • Gin Tonic ($495) • Dry Martini ($455) • Old Fashion ($415) • Piña Colada ($435) • Cuba Libre ($325)."
+            },
+            {
+                cat: "alcohol",
+                name: "Vino por Copa & Botellas Selectas",
+                price: "Desde $355.00",
+                img: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=600&q=80",
+                desc: "Vino Tinto o Blanco por copa ($355) • 19 Crimes ($2,050-$2,150) • JP Chenet ($2,100) • Segura Viuda Brut / Rose ($1,950-$2,175) • Sangría ($425)."
+            },
+            {
+                cat: "alcohol",
+                name: "Cervezas Nacionales e Internacionales",
+                price: "Desde $165.00",
+                img: "https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=600&q=80",
+                desc: "Presidente / Light ($165) • Corona ($250) • Heineken ($255) • Modelo Negra / Rubia ($225-$255) • Stella Artois ($270) • Michelob Ultra ($195)."
+            },
+            {
+                cat: "alcohol",
+                name: "Jugos Naturales & Aguas",
+                price: "Desde $60.00",
+                img: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=600&q=80",
+                desc: "Jugo natural de Fresa, Limón, Naranja, Chinola o Cereza ($125-$175) • Agua San Pellegrino ($135) • Perrier ($155) • Soda Amarga ($110)."
+            },
+
+            // ==================== TENTACIONES ====================
+            {
+                cat: "tentaciones",
+                name: "Tarta Vasca de Pistacho / Lotus",
+                price: "$500.00",
+                img: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=600&q=80",
+                desc: "Nuestra aclamada cheesecake quemada con centro suave, cremoso y notas intensas a elegir entre pistacho o galleta Lotus Biscoff."
+            },
+            {
+                cat: "tentaciones",
+                name: "Brownie a la Moda",
+                price: "$390.00",
+                img: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80",
+                desc: "Brownie tibio con centro húmedo de chocolate oscuro coronado con helado artesanal de vainilla."
+            },
+            {
+                cat: "tentaciones",
+                name: "Bizcocho de Zanahoria",
+                price: "$350.00",
+                img: "https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&w=600&q=80",
+                desc: "Pastel de zanahoria húmedo y aromatizado con especias dulces y frosting sedoso de queso crema."
+            },
+            {
+                cat: "tentaciones",
+                name: "Chocolate Chip Banana Bread",
+                price: "$225.00",
+                img: "https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?auto=format&fit=crop&w=600&q=80",
+                desc: "Pan de plátano artesanal recién horneado con abundante lluvia de chispas de chocolate derretido."
+            },
+            {
+                cat: "tentaciones",
+                name: "Pound Cake de Limón",
+                price: "$260.00",
+                img: "https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=600&q=80",
+                desc: "Bizcocho esponjoso con ralladura natural de limón y un glaseado azucarado equilibrado."
+            }
+        ];
+
+        // RENDER DINÁMICO DEL MENÚ
+        const container = document.getElementById('menuContainer');
+        const searchInput = document.getElementById('menuSearch');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+
+        // Menú Drawer Móvil
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        const drawerOverlay = document.getElementById('drawerOverlay');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleDrawer() {
+            mobileDrawer.classList.toggle('open');
+            drawerOverlay.classList.toggle('open');
+        }
+
+        menuToggle.addEventListener('click', toggleDrawer);
+        drawerOverlay.addEventListener('click', toggleDrawer);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleDrawer));
+
+        function getCategoryLabel(cat) {
+            switch(cat) {
+                case "al-salir-el-sol": return "Brunch";
+                case "latidos": return "Entradas & Pastas";
+                case "el-corazon": return "Platos Fuertes";
+                case "cafes-bebidas": return "Cafetería & Bebidas";
+                case "alcohol": return "Bar & Vinos";
+                case "tentaciones": return "Tentación Dulce";
+                default: return "Especialidad";
+            }
+        }
+
+        function renderMenu(items) {
+            container.innerHTML = '';
+            if(items.length === 0) {
+                container.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
+                        <i class="fa-solid fa-mug-hot" style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--accent-gold);"></i>
+                        <h4 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--coffee-deep);">No encontramos resultados</h4>
+                        <p>Intenta buscando con otra palabra o selecciona una categoría diferente.</p>
+                    </div>`;
+                return;
+            }
+
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'menu-card';
+                card.innerHTML = `
+                    <div class="card-img-wrap">
+                        <img src="${item.img}" alt="${item.name}" loading="lazy">
+                        <span class="card-category-badge">${getCategoryLabel(item.cat)}</span>
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <div class="card-head">
+                                <h3 class="card-title">${item.name}</h3>
+                                <span class="card-price">${item.price}</span>
+                            </div>
+                            <p class="card-desc">${item.desc}</p>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // LÓGICA DE FILTRADO Y BÚSQUEDA
+        let currentCat = 'all';
+        let currentQuery = '';
+
+        function applyFilters() {
+            let filtered = menuItems.filter(item => {
+                const matchesCat = currentCat === 'all' || item.cat === currentCat;
+                const matchesQuery = item.name.toLowerCase().includes(currentQuery) || item.desc.toLowerCase().includes(currentQuery);
+                return matchesCat && matchesQuery;
+            });
+            renderMenu(filtered);
+        }
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentCat = btn.getAttribute('data-cat');
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            currentQuery = e.target.value.toLowerCase().trim();
+            applyFilters();
+        });
+
+        // CARGA INICIAL
+        renderMenu(menuItems);
+    </script>
+</body>
+</html>
